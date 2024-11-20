@@ -7277,9 +7277,7 @@ bool PortsOrch::addTunnel(string tunnel_alias, sai_object_id_t tunnel_id, bool h
     {
         tunnel.m_learn_mode = SAI_BRIDGE_PORT_FDB_LEARNING_MODE_DISABLE;
     }
-    tunnel.m_oper_status = SAI_PORT_OPER_STATUS_DOWN;
     m_portList[tunnel_alias] = tunnel;
-    saiOidToAlias[tunnel_id] = tunnel_alias;
 
     SWSS_LOG_INFO("addTunnel:: %" PRIx64, tunnel_id);
 
@@ -7290,7 +7288,6 @@ bool PortsOrch::removeTunnel(Port tunnel)
 {
     SWSS_LOG_ENTER();
 
-    saiOidToAlias.erase(tunnel.m_tunnel_id);
     m_portList.erase(tunnel.m_alias);
 
     return true;
@@ -8218,7 +8215,7 @@ void PortsOrch::updatePortOperStatus(Port &port, sai_port_oper_status_t status)
         return;
     }
 
-    if (port.m_type == Port::PHY || port.m_type == Port::TUNNEL)
+    if (port.m_type == Port::PHY)
     {
         updateDbPortOperStatus(port, status);
         updateDbPortFlapCount(port, status);
