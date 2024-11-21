@@ -1,0 +1,21 @@
+name: 'Sync With Upstream'
+
+on:
+  schedule:
+    - cron:  '0 0 * * *'
+    # scheduled at 00:00 daily
+
+  workflow_dispatch:
+
+jobs:
+  sync_latest_from_upstream:
+    runs-on: ubuntu-latest
+    name: Sync latest commits from upstream repo
+
+    steps:
+      - uses: tgymnich/fork-sync@v2.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          base: 202311-broadcom
+          head: 202311
+          merge_method: rebase
