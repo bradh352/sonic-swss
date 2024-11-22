@@ -6979,7 +6979,6 @@ void PortsOrch::updatePortOperStatus(Port &port, sai_port_oper_status_t status)
 
     if (port.m_type == Port::PHY)
     {
-        updateDbPortFlapCount(port, status);
         updateGearboxPortOperStatus(port);
 
         /* Refresh the port states and reschedule the poller tasks */
