@@ -16,6 +16,6 @@ jobs:
       - uses: tgymnich/fork-sync@v2.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          base: 202405-broadcom
-          head: 202405
+          base: 202211-broadcom
+          head: 202211
           merge_method: rebase
