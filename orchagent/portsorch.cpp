@@ -5098,7 +5098,7 @@ void PortsOrch::doVlanMemberTask(Consumer &consumer)
 
         if (op == SET_COMMAND)
         {
-            string tagging_mode = "untagged";
+            string tagging_mode = (port.m_type == Port::TUNNEL)?"tagged":"untagged";
 
             for (auto i : kfvFieldsValues(t))
             {
@@ -5121,7 +5121,6 @@ void PortsOrch::doVlanMemberTask(Consumer &consumer)
                 it = consumer.m_toSync.erase(it);
                 continue;
             }
-
             if (addBridgePort(port) && addVlanMember(vlan, port, tagging_mode))
                 it = consumer.m_toSync.erase(it);
             else
