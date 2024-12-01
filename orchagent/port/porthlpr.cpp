@@ -904,6 +904,12 @@ bool PortHelper::parsePortConfig(PortConfig &port) const
                 return false;
             }
         }
+        else if (field == PORT_MODE)
+        {
+            /* Placeholder to prevent warning. Not needed to be parsed here.
+             * Setting exists in sonic-port.yang with possible values: routed|access|trunk
+             */
+        }
         else
         {
             SWSS_LOG_WARN("Unknown field(%s): skipping ...", field.c_str());
