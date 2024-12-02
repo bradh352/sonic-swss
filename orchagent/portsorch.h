@@ -299,6 +299,7 @@ private:
     map<string, uint32_t> m_bridge_port_ref_count;
 
     NotificationConsumer* m_portStatusNotificationConsumer;
+    bool m_supportsHostIfTxQueue = false;
 
     swss::SelectableTimer *m_port_state_poller = nullptr;
 
